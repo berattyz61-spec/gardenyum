@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gardenyum Çayırova | SVT İnşaat A.Ş.</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Ikonları -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animasyon Kütüphanesi -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        anthracite: {
+                            DEFAULT: '#1a1a1a',
+                            light: '#2a2a2a',
+                            dark: '#0f0f0f'
+                        },
+                        gold: {
+                            DEFAULT: '#C5A059',
+                            hover: '#B08D4C'
+                        },
+                        sage: {
+                            DEFAULT: '#8AA382',
+                            light: '#A3BCA0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        
+        .hero-bg {
+            background-color: #111;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('kapak.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .glass-nav {
+            background: rgba(15, 15, 15, 0.98);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
+        }
+
+        .tab-btn.active {
+            border-bottom-color: #C5A059;
+            color: #C5A059;
+        }
+
+        .img-hover-zoom { overflow: hidden; background: #f0f0f0; }
+        .img-hover-zoom img { transition: transform 1.5s cubic-bezier(0.2, 1, 0.3, 1); }
+        .img-hover-zoom:hover img { transform: scale(1.1); }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover { transform: scale(1.15) rotate(8deg); }
+        
+        #success-message {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .dest-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            transition: all 0.5s ease;
+        }
+        .dest-card:hover {
+            background: rgba(197, 160, 89, 0.05);
+            border-color: rgba(197, 160, 89, 0.4);
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans selection:bg-gold selection:text-white">
+
+    <!-- WhatsApp Butonu -->
+    <a href="https://wa.me/905324808093" target="_blank" class="whatsapp-float bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center border-2 border-white">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- Navigasyon -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 glass-nav border-b border-white/5">
+        <div class="container mx-auto px-6 lg:px-12 flex justify-between items-center">
+            <a href="#" class="text-2xl font-serif text-white tracking-widest font-bold flex items-center gap-2 text-gold uppercase">
+                <i class="fa-solid fa-leaf"></i> GARDENYUM
+            </a>
+            <div class="hidden md:flex space-x-10 items-center text-[10px] font-bold tracking-[0.3em] text-gray-300 uppercase">
+                <a href="#hakkimizda" class="hover:text-gold transition">Kurumsal</a>
+                <a href="#donatilar" class="hover:text-gold transition">Ayrıcalıklar</a>
+                <a href="#planlar" class="hover:text-gold transition">Daire Tipleri</a>
+                <a href="#konum" class="hover:text-gold transition">Lokasyon</a>
+                <a href="#iletisim" class="px-8 py-2.5 border border-gold/50 text-gold hover:bg-gold hover:text-white transition rounded-sm shadow-xl">İletişim</a>
+            </div>
+            <button class="md:hidden text-white text-2xl" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-black border-t border-white/5 shadow-2xl text-center">
+            <div class="flex flex-col px-8 py-10 space-y-6 text-white text-xs font-bold tracking-widest uppercase">
+                <a href="#hakkimizda" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Kurumsal</a>
+                <a href="#donatilar" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Ayrıcalıklar</a>
+                <a href="#planlar" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Planlar</a>
+                <a href="#konum" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Lokasyon</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Alanı -->
+    <header class="relative h-screen hero-bg flex items-center justify-center text-center">
+        <div class="container mx-auto px-6 z-10" data-aos="fade-up" data-aos-duration="1500">
+            <p class="text-gold tracking-[0.6em] text-[10px] md:text-xs uppercase mb-6 font-black opacity-90">SVT İNŞAAT A.Ş. SUNAR</p>
+            <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-serif text-white mb-8 font-bold tracking-tighter leading-none uppercase drop-shadow-2xl">GARDENYUM</h1>
+            <p class="text-lg md:text-2xl text-gray-200 mb-14 font-light tracking-[0.4em] max-w-5xl mx-auto uppercase italic opacity-80">"HAYALİNİZDEKİ YAŞAMLA DOĞANIN UYUMU"</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-8">
+                <a href="#planlar" class="px-14 py-6 bg-gold text-white text-[10px] font-black tracking-[0.5em] hover:bg-gold-hover transition-all rounded-sm shadow-2xl uppercase">PROJEYİ KEŞFET</a>
+                <a href="#iletisim" class="px-14 py-6 bg-transparent border-2 border-white/30 text-white text-[10px] font-black tracking-[0.5em] hover:bg-white hover:text-anthracite transition-all rounded-sm shadow-lg uppercase">KATALOG İNDİR</a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-gold">
+            <i class="fa-solid fa-chevron-down text-3xl"></i>
+        </div>
+    </header>
+
+    <!-- Hakkımızda -->
+    <section id="hakkimizda" class="py-32 bg-white overflow-hidden">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="flex flex-col lg:flex-row items-center gap-24">
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <div class="flex items-center gap-4 mb-10">
+                        <div class="h-[2px] w-20 bg-gold"></div>
+                        <span class="text-gold uppercase tracking-[0.4em] text-[10px] font-black uppercase font-bold">KURUMSAL VİZYON</span>
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-serif text-anthracite mb-10 font-bold leading-tight italic uppercase italic">28 Yıllık Güvenle</h2>
+                    <p class="text-gray-500 font-light mb-12 leading-relaxed text-lg text-justify border-l-4 border-gold/30 pl-10 italic">
+                        "Firma kurucumuz Nuri TÜYSÜZ önderliğinde temelleri atılan SVT İnşaat, 2004 yılından bu yana güven ve kaliteyi deneyimi ile bir araya getirmektedir. Gardenyum projesi ile Çayırova'ya yeni bir prestij kazandırıyoruz."
+                    </p>
+                    <div class="grid grid-cols-2 gap-12 text-center">
+                        <div class="p-10 bg-gray-50 border border-gray-100 rounded-sm">
+                            <h4 class="text-6xl font-serif text-gold mb-3 italic">28+</h4>
+                            <p class="text-[10px] text-gray-400 uppercase tracking-[0.3em] font-black">Yıllık Tecrübe</p>
+                        </div>
+                        <div class="p-10 bg-gray-50 border border-gray-100 rounded-sm">
+                            <h4 class="text-6xl font-serif text-gold mb-3 italic">2004</h4>
+                            <p class="text-[10px] text-gray-400 uppercase tracking-[0.3em] font-black">Kuruluş Yılı</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <div class="relative img-hover-zoom rounded-sm shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)]">
+                        <img src="kurumsal.png" alt="SVT Kurumsal" class="w-full h-[700px] object-cover" onerror="this.src='https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1000&q=80'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sosyal Donatılar -->
+    <section id="donatilar" class="py-32 bg-anthracite-dark">
+        <div class="container mx-auto px-6 lg:px-12 text-center mb-24" data-aos="fade-up">
+            <span class="text-gold uppercase tracking-[0.6em] text-[10px] font-black block mb-8 opacity-80 uppercase">AYRICALIKLI BİR YAŞAM</span>
+            <h2 class="text-4xl md:text-6xl font-serif text-white italic">Premium Sosyal Alanlar</h2>
+        </div>
+        <div class="container mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="relative group h-[550px] overflow-hidden rounded-sm shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+                <img src="fitness.png" alt="Fitness" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" onerror="this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80'">
+                <div class="absolute inset-0 bg-gradient-to-t from-anthracite-dark via-transparent to-transparent flex flex-col justify-end p-10">
+                    <h3 class="text-white font-serif text-xl tracking-[0.2em] uppercase font-bold border-l-2 border-gold pl-6">Fitness Merkezi</h3>
+                </div>
+            </div>
+            <div class="relative group h-[550px] overflow-hidden rounded-sm shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                <img src="havuz.png" alt="Havuz" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" onerror="this.src='https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80'">
+                <div class="absolute inset-0 bg-gradient-to-t from-anthracite-dark via-transparent to-transparent flex flex-col justify-end p-10">
+                    <h3 class="text-white font-serif text-xl tracking-[0.2em] uppercase font-bold border-l-2 border-gold pl-6">Şelaleli Kapalı Havuz</h3>
+                </div>
+            </div>
+            <div class="relative group h-[550px] overflow-hidden rounded-sm shadow-2xl" data-aos="fade-up" data-aos-delay="300">
+                <img src="hamam.png" alt="Hamam" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" onerror="this.src='https://images.unsplash.com/photo-1583416750470-965b2707b355?auto=format&fit=crop&w=800&q=80'">
+                <div class="absolute inset-0 bg-gradient-to-t from-anthracite-dark via-transparent to-transparent flex flex-col justify-end p-10">
+                    <h3 class="text-white font-serif text-xl tracking-[0.2em] uppercase font-bold border-l-2 border-gold pl-6">Hamam & Sauna</h3>
+                </div>
+            </div>
+            <div class="relative group h-[550px] overflow-hidden rounded-sm shadow-2xl" data-aos="fade-up" data-aos-delay="400">
+                <img src="pergola.png" alt="Pergola" class="w-full h-full object-cover group-hover:scale-110 transition duration-1000" onerror="this.src='https://images.unsplash.com/photo-1598228723793-52759bba239c?auto=format&fit=crop&w=800&q=80'">
+                <div class="absolute inset-0 bg-gradient-to-t from-anthracite-dark via-transparent to-transparent flex flex-col justify-end p-10">
+                    <h3 class="text-white font-serif text-xl tracking-[0.2em] uppercase font-bold border-l-2 border-gold pl-6">Peyzaj & Dinlenme</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kat Planları -->
+    <section id="planlar" class="py-32 bg-gray-50 border-y border-gray-200/50">
+        <div class="container mx-auto px-6 lg:px-12 text-center mb-24" data-aos="fade-up">
+            <span class="text-gold uppercase tracking-[0.5em] text-[10px] font-black block mb-6 font-bold uppercase">MİMARİ TASARIM</span>
+            <h2 class="text-4xl md:text-6xl font-serif text-anthracite italic uppercase italic">Daire Tipleri</h2>
+            <div class="flex justify-center mt-16 space-x-12 border-b border-gray-200">
+                <button class="tab-btn active pb-8 text-[11px] font-black tracking-[0.4em] border-b-4 border-transparent transition-all uppercase font-bold" onclick="switchTab('tab-3plus1', this)">3+1 DUBLEKS</button>
+                <button class="tab-btn pb-8 text-[11px] font-black tracking-[0.4em] border-b-4 border-transparent transition-all uppercase font-bold" onclick="switchTab('tab-4plus1', this)">4+1 DUBLEKS</button>
+            </div>
+        </div>
+
+        <div id="tab-3plus1" class="tab-content block animate-[fadeIn_0.6s]">
+            <div class="container mx-auto px-6 lg:px-12 flex flex-col lg:flex-row bg-white p-14 gap-20 rounded-sm shadow-2xl items-center border border-gray-100">
+                <div class="lg:w-1/2 flex justify-center p-14 bg-gray-50 rounded-sm shadow-inner relative group">
+                    <img src="plan31.png" alt="3+1 Kat Planı" class="max-h-[600px] w-auto drop-shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h3 class="text-4xl font-serif text-anthracite mb-12 tracking-widest italic uppercase border-b border-gold/20 pb-6 italic uppercase font-bold">3+1 Tip 1 Planı</h3>
+                    <div class="space-y-8 text-sm font-medium italic">
+                        <div class="flex justify-between border-b border-gray-100 pb-6 uppercase tracking-widest"><span class="text-gray-400 font-bold">Brüt Alan</span> <strong class="text-gold text-3xl font-serif italic font-bold">228.1 m²</strong></div>
+                        <div class="flex justify-between border-b border-gray-100 pb-6 uppercase tracking-widest"><span class="text-gray-400 font-bold">Net Alan</span> <strong class="text-gold text-3xl font-serif italic font-bold">173.1 m²</strong></div>
+                        <div class="flex justify-between border-b border-gray-100 pb-6 uppercase tracking-widest"><span class="text-gray-400 font-bold">Otopark Tahsisi</span> <strong class="text-anthracite text-xl font-serif italic text-right font-bold">25 m²</strong></div>
+                        <div class="flex justify-between border-b border-gray-100 pb-6 uppercase tracking-widest"><span class="text-gray-400 font-bold">Sosyal Alan Payı</span> <strong class="text-anthracite text-xl font-serif italic text-right font-bold">15 m²</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-4plus1" class="tab-content hidden animate-[fadeIn_0.6s]">
+             <div class="container mx-auto px-6 lg:px-12 flex flex-col lg:flex-row bg-white p-14 gap-20 rounded-sm shadow-2xl items-center border border-gray-100">
+                <div class="lg:w-1/2 flex justify-center p-14 bg-gray-50 rounded-sm shadow-inner relative group">
+                    <img src="plan41.png" alt="4+1 Kat Planı" class="max-h-[600px] w-auto drop-shadow-2xl" onerror="this.src='https://images.unsplash.com/photo-1600607688969-a5bfcd64bd15?auto=format&fit=crop&w=800&q=80'">
+                </div>
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <h3 class="text-4xl font-serif text-anthracite mb-12 tracking-widest italic uppercase border-b border-gold/20 pb-6 italic uppercase font-bold">4+1 Tip 4 Planı</h3>
+                    <div class="space-y-8 text-sm font-medium italic">
+                        <div class="flex justify-between border-b border-gray-100 pb-6 uppercase tracking-widest"><span class="text-gray-400 font-bold">Brüt Alan</span> <strong class="text-gold text-3xl font-serif italic font-bold">182.4 m²</strong></div>
+                        <div class="flex justify-between border-b border-gray-100 pb-6 uppercase tracking-widest"><span class="text-gray-400 font-bold">Net Alan</span> <strong class="text-gold text-3xl font-serif italic font-bold">127.4 m²</strong></div>
+                        <p class="text-gray-400 font-light mt-10 leading-relaxed italic border-l-4 border-gold pl-8 text-lg font-bold uppercase tracking-widest italic">Geniş aileler için lüksün ve konforun her metrekaresinde hissedildiği özel yaşam alanları.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lokasyon (Tam İsimler) -->
+    <section id="konum" class="py-32 bg-anthracite-dark text-white">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="text-center mb-24" data-aos="fade-up">
+                <span class="text-gold uppercase tracking-[0.7em] text-[10px] font-black block mb-6 opacity-80 uppercase font-bold">LOKASYON AYRICALIĞI</span>
+                <h2 class="text-4xl md:text-6xl font-serif mb-8 italic uppercase font-bold italic uppercase">Şehrin Kalbine Yakın Olun</h2>
+                <p class="text-gray-400 tracking-[0.2em] text-xs uppercase">Gardenyum Çayırova'dan Önemli Noktalara Ulaşım Süreleri</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Sabiha Gökçen -->
+                <div class="dest-card p-12 rounded-sm" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex justify-between items-start mb-8 font-bold">
+                        <i class="fa-solid fa-plane-up text-gold text-2xl"></i>
+                        <span class="text-3xl font-serif italic font-bold text-gold">24 DK</span>
+                    </div>
+                    <h4 class="text-sm font-black tracking-widest uppercase mb-2">İstanbul Sabiha Gökçen Havalimanı</h4>
+                    <p class="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase italic">20 KM MESAFEDE</p>
+                </div>
+
+                <!-- Osmangazi -->
+                <div class="dest-card p-12 rounded-sm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex justify-between items-start mb-8 font-bold">
+                        <i class="fa-solid fa-bridge text-gold text-2xl"></i>
+                        <span class="text-3xl font-serif italic font-bold text-gold">19 DK</span>
+                    </div>
+                    <h4 class="text-sm font-black tracking-widest uppercase mb-2">Osmangazi Köprüsü</h4>
+                    <p class="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase italic">17,2 KM MESAFEDE</p>
+                </div>
+
+                <!-- Viaport Marina -->
+                <div class="dest-card p-12 rounded-sm" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex justify-between items-start mb-8 font-bold">
+                        <i class="fa-solid fa-ship text-gold text-2xl"></i>
+                        <span class="text-3xl font-serif italic font-bold text-gold">23 DK</span>
+                    </div>
+                    <h4 class="text-sm font-black tracking-widest uppercase mb-2">Viaport Marina Tuzla</h4>
+                    <p class="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase italic">12,6 KM MESAFEDE</p>
+                </div>
+
+                <!-- Gebze Teknik -->
+                <div class="dest-card p-12 rounded-sm" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex justify-between items-start mb-8 font-bold">
+                        <i class="fa-solid fa-graduation-cap text-gold text-2xl"></i>
+                        <span class="text-3xl font-serif italic font-bold text-gold">20 DK</span>
+                    </div>
+                    <h4 class="text-sm font-black tracking-widest uppercase mb-2">Gebze Teknik Üniversitesi</h4>
+                    <p class="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase italic">7,3 KM MESAFEDE</p>
+                </div>
+
+                <!-- Gebze Adliyesi -->
+                <div class="dest-card p-12 rounded-sm" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex justify-between items-start mb-8 font-bold">
+                        <i class="fa-solid fa-scale-balanced text-gold text-2xl"></i>
+                        <span class="text-3xl font-serif italic font-bold text-gold">8 DK</span>
+                    </div>
+                    <h4 class="text-sm font-black tracking-widest uppercase mb-2">Gebze Adliyesi</h4>
+                    <p class="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase italic">3,5 KM MESAFEDE</p>
+                </div>
+
+                <!-- TÜBİTAK -->
+                <div class="dest-card p-12 rounded-sm" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex justify-between items-start mb-8 font-bold">
+                        <i class="fa-solid fa-microchip text-gold text-2xl"></i>
+                        <span class="text-3xl font-serif italic font-bold text-gold">23 DK</span>
+                    </div>
+                    <h4 class="text-sm font-black tracking-widest uppercase mb-2">TÜBİTAK Gebze Yerleşkesi</h4>
+                    <p class="text-[10px] text-gray-500 tracking-[0.2em] font-bold uppercase italic">8,2 KM MESAFEDE</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim -->
+    <footer id="iletisim" class="bg-black text-gray-400 pt-32 pb-16">
+        <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-3 gap-24 pb-24 border-b border-white/5 text-center md:text-left">
+            <div>
+                <h2 class="text-5xl font-serif text-white mb-12 tracking-[0.3em] font-bold text-gold italic uppercase drop-shadow-xl font-bold uppercase italic uppercase">GARDENYUM</h2>
+                <div class="space-y-12 text-[11px] font-black tracking-[0.3em] uppercase italic">
+                    <p class="flex items-center md:items-start justify-center md:justify-start gap-8 font-bold"><i class="fa-solid fa-map-pin text-gold text-2xl"></i> FATİH CAD. NO:92 ÇAYIROVA / KOCAELİ</p>
+                    <p class="flex items-center justify-center md:justify-start gap-8 font-bold"><i class="fa-solid fa-phone text-gold text-2xl"></i> +90 532 480 80 93</p>
+                    <p class="flex items-center justify-center md:justify-start gap-8 font-bold"><i class="fa-solid fa-globe text-gold text-2xl"></i> WWW.SVTINSAAT.COM.TR</p>
+                </div>
+            </div>
+            <div class="lg:col-span-2 bg-anthracite-dark p-12 md:p-20 rounded-sm border border-white/5 shadow-3xl">
+                <div id="form-container">
+                    <h3 class="text-3xl font-serif text-white mb-16 italic tracking-[0.3em] uppercase font-bold text-center border-b border-gold/10 pb-8 italic font-bold uppercase italic uppercase italic">Bilgi Talep Formu</h3>
+                    <form id="contact-form" class="grid md:grid-cols-2 gap-16">
+                        <input type="text" name="name" required class="w-full bg-transparent border-b border-gray-800 py-6 text-white focus:outline-none focus:border-gold transition text-xs tracking-widest uppercase placeholder:text-gray-600 font-bold" placeholder="ADINIZ SOYADINIZ">
+                        <input type="tel" name="phone" required class="w-full bg-transparent border-b border-gray-800 py-6 text-white focus:outline-none focus:border-gold transition text-xs tracking-widest uppercase placeholder:text-gray-600 font-bold" placeholder="TELEFON NUMARANIZ">
+                        <button type="submit" class="md:col-span-2 bg-gold text-white font-black py-10 hover:bg-gold-hover transition-all shadow-2xl tracking-[0.7em] text-[12px] uppercase font-bold italic">GÖNDER</button>
+                    </form>
+                </div>
+                <!-- Başarı Mesajı -->
+                <div id="success-message" class="text-center py-20">
+                    <i class="fa-solid fa-circle-check text-gold text-6xl mb-8"></i>
+                    <h3 class="text-3xl font-serif text-white mb-4 italic font-bold">Mesajınız Alındı!</h3>
+                    <p class="text-gray-500 uppercase tracking-widest text-xs">Satış danışmanlarımız en kısa sürede size geri dönüş yapacaktır.</p>
+                </div>
+            </div>
+        </div>
+        <div class="pt-16 text-center text-[10px] text-gray-700 tracking-[0.7em] font-black uppercase font-bold">
+            &copy; 2026 SVT İNŞAAT A.Ş. | TÜM HAKLARI SAKLIDIR.
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 1200, easing: 'ease-in-out' });
+        
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            nav.style.background = window.scrollY > 50 ? 'rgba(10, 10, 10, 0.99)' : 'rgba(15, 15, 15, 0.98)';
+            nav.style.padding = window.scrollY > 50 ? '0.4rem 0' : '1rem 0';
+        });
+
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active', 'text-gold'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            element.classList.add('active', 'text-gold');
+            document.getElementById(tabId).classList.remove('hidden');
+        }
+
+        // Form Simülasyonu
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            document.getElementById('form-container').style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
